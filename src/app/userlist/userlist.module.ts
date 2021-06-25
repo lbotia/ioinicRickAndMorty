@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { UserlistPageRoutingModule } from './userlist-routing.module';
 
 import { UserlistPage } from './userlist.page';
+import {PipesModule} from '../pipes/pipes.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    UserlistPageRoutingModule
+    UserlistPageRoutingModule,
+    PipesModule
   ],
   declarations: [UserlistPage]
 })
