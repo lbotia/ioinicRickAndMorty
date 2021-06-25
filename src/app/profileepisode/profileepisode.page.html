@@ -1,34 +1,43 @@
-<ion-header>
+<ion-header >
   <div *ngIf="episode">
   <ion-toolbar>
 
     <ion-title class="ion-text-center">{{episode.episode}}</ion-title>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="episode"></ion-back-button>
+    <ion-buttons color="secondary"  slot="start">
+      <ion-back-button  defaultHref="episode"></ion-back-button>
     </ion-buttons>
 
   </ion-toolbar>
   </div>
 </ion-header>
 
-<ion-content>
+<ion-content color="favorite">
   <ion-grid>
     <ion-row>
       <ion-col sizeMd="4" offsetMd="4">
         <div *ngIf="episode">
           <ion-card>
-            <ion-card-content >
+            <ion-card-content style="background-color: #B6C867">
               <ion-card-subtitle>{{episode.air_date}}</ion-card-subtitle>
-              <ion-card-title class="ion-text-center">{{episode.name}}</ion-card-title>
-              <ion-button size="100%" color="light" (click)="habilitarLista()">Personales</ion-button>
-              <ion-list *ngIf="habilitarlista">
-                <ion-item *ngFor="let listCharacter of listCharacters">
-                  <ion-avatar slot="start">
-                    <img src="{{listCharacter.image}}" alt="">
-                  </ion-avatar>
-                  <ion-label>{{listCharacter.name}}</ion-label>
-                </ion-item>
-              </ion-list>
+              <ion-card-title class="ion-text-center"><strong>{{episode.name}}</strong></ion-card-title>
+              <ion-grid class="ion-text-center">
+                <ion-col size="12">
+                  <ion-button  color="button" (click)="habilitarLista()">Personales</ion-button>
+                </ion-col>
+<!--                <ion-col size="6">-->
+<!--                  <ion-button  color="button" (click)="habilitarLista()">Dimension</ion-button>-->
+<!--                </ion-col>-->
+              </ion-grid>
+              <ion-grid>
+                <ion-row *ngIf="habilitarlista">
+                  <ion-col size="4" *ngFor="let listCharacter of listCharacters" >
+                    <button style="background-color: #B6C867; " (click)="mostrarPopUp($event, listCharacter)">
+                    <img  src="{{listCharacter.image}}">
+                    </button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+
 
             </ion-card-content>
           </ion-card>

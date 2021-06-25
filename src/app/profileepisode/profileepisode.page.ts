@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {HttpClient} from '@angular/common/http'
-
+import {HttpClient} from '@angular/common/http';
+import {PopoverController} from '@ionic/angular';
+import {PopinfoComponent} from '../popinfo/popinfo.component';
 
 
 @Component({
@@ -16,9 +17,11 @@ export class ProfileepisodePage implements OnInit {
   characterEpisode: any [] = [];
   listCharacters;
   habilitarlista= false;
+  colorButton = '';
   constructor(
     private activateRouter: ActivatedRoute,
-    private http: HttpClient
+    private http: HttpClient,
+    private popoverCtrl: PopoverController
   ) { }
 
   ngOnInit() {
@@ -57,5 +60,26 @@ export class ProfileepisodePage implements OnInit {
 
     this.habilitarlista = !this.habilitarlista;
 
+  }
+
+  async mostrarPopUp(evento, listCharacter: any){
+    console.log('lista--> ',listCharacter);
+    const popOver = await this.popoverCtrl.create({
+      component: PopinfoComponent,
+      event: evento,
+      mode: 'ios',
+      componentProps: {
+        name: listCharacter.name,
+        specie: listCharacter.species,
+        origin: listCharacter.origin.name
+      }
+    });
+    await popOver.present();
+  }
+
+
+  getColorButton() {
+     this.colorButton= '#01937C';
+     return this.colorButton;
   }
 }
