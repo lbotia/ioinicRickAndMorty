@@ -1,11 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'filter'
+  name: 'filter',
+  pure: false
 })
 export class FilterPipe implements PipeTransform {
 
   transform(arreglo: any[], texto: string): any[] {
+
+    // console.log('arreglo size -> ', arreglo.length);
 
     if(texto === ''){
       return  arreglo;

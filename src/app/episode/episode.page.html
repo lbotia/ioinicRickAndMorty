@@ -7,16 +7,25 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="popup">
   <ion-grid>
     <ion-row>
-      <ion-col sizeMd="4" offsetMd="4">
+      <ion-col sizeMd="4" offsetMd="4" >
         <ion-list>
-          <ion-item *ngFor="let episode of episode" [routerLink]="['/profileepisode/' +episode.id]">
+          <ion-item color="popup"  *ngFor="let episode of episode" [routerLink]="['/profileepisode/' +episode.id]">
             <ion-label>{{episode.name}} </ion-label>
           </ion-item>
         </ion-list>
       </ion-col>
     </ion-row>
   </ion-grid>
+
+
+  <ion-infinite-scroll threshold="150px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="crescent"
+      loadingText="Cargando...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
 </ion-content>
